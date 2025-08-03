@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday!</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #ffeaa7);
+            background-size: 400% 400%;
+            animation: gradientShift 8s ease infinite;
+            font-family: 'Arial', sans-serif;
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .birthday-text {
+            font-size: 4em;
+            font-weight: bold;
+            color: #fff;
+            text-shadow: 3px 3px 0px #ff6b6b, 6px 6px 10px rgba(0,0,0,0.3);
+            margin-bottom: 20px;
+            animation: bounce 2s infinite;
+        }
+
+        .name {
+            font-size: 5em;
+            font-weight: bold;
+            color: #ffed4e;
+            text-shadow: 4px 4px 0px #ff6b6b, 8px 8px 15px rgba(0,0,0,0.4);
+            margin: 20px 0;
+            animation: pulse 3s infinite;
+        }
+
+        .message {
+            font-size: 1.5em;
+            color: #fff;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+            margin-top: 30px;
+            animation: fadeInUp 3s ease;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-20px); }
+            60% { transform: translateY(-10px); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); color: #ff6b6b; }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes fadeInUp {
+            0% { opacity: 0; transform: translateY(50px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Balloons */
+        .balloon {
+            position: absolute;
+            width: 60px;
+            height: 80px;
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .balloon:before {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            width: 2px;
+            height: 100px;
+            background: #333;
+            transform: translateX(-50%);
+        }
+
+        .balloon1 { background: #ff6b6b; top: 20%; left: 10%; animation-delay: 0s; }
+        .balloon2 { background: #4ecdc4; top: 40%; right: 15%; animation-delay: 1s; }
+        .balloon3 { background: #45b7d1; top: 60%; left: 20%; animation-delay: 2s; }
+        .balloon4 { background: #96ceb4; top: 30%; right: 25%; animation-delay: 1.5s; }
+        .balloon5 { background: #ffeaa7; top: 70%; right: 10%; animation-delay: 0.5s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(-5deg); }
+            50% { transform: translateY(-30px) rotate(5deg); }
+        }
+
+        /* Confetti */
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #ff6b6b;
+            animation: fall 3s linear infinite;
+        }
+
+        .confetti:nth-child(odd) { background: #4ecdc4; }
+        .confetti:nth-child(3n) { background: #45b7d1; }
+        .confetti:nth-child(4n) { background: #96ceb4; }
+        .confetti:nth-child(5n) { background: #ffeaa7; }
+
+        @keyframes fall {
+            0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+        }
+
+        /* Cake */
+        .cake {
+            position: absolute;
+            bottom: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: cakeWiggle 4s ease-in-out infinite;
+        }
+
+        .cake-base {
+            width: 100px;
+            height: 60px;
+            background: #8b4513;
+            border-radius: 10px;
+            position: relative;
+        }
+
+        .cake-layer {
+            width: 80px;
+            height: 40px;
+            background: #ffb6c1;
+            border-radius: 8px;
+            position: absolute;
+            top: -20px;
+            left: 10px;
+        }
+
+        .candle {
+            width: 4px;
+            height: 20px;
+            background: #fff;
+            position: absolute;
+            top: -35px;
+            left: 48px;
+        }
+
+        .flame {
+            width: 8px;
+            height: 8px;
+            background: radial-gradient(circle, #ffed4e 0%, #ff6b6b 70%);
+            border-radius: 50%;
+            position: absolute;
+            top: -8px;
+            left: -2px;
+            animation: flicker 0.5s ease-in-out infinite alternate;
+        }
+
+        @keyframes flicker {
+            0% { transform: scale(1) rotate(-2deg); }
+            100% { transform: scale(1.1) rotate(2deg); }
+        }
+
+        @keyframes cakeWiggle {
+            0%, 100% { transform: translateX(-50%) rotate(0deg); }
+            25% { transform: translateX(-50%) rotate(1deg); }
+            75% { transform: translateX(-50%) rotate(-1deg); }
+        }
+
+        /* Stars */
+        .star {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #ffed4e;
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+            animation: twinkle 2s ease-in-out infinite;
+        }
+
+        .star:nth-child(2n) { animation-delay: 1s; }
+        .star:nth-child(3n) { animation-delay: 0.5s; }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
+        .star1 { top: 15%; left: 5%; }
+        .star2 { top: 25%; right: 5%; }
+        .star3 { top: 80%; left: 15%; }
+        .star4 { top: 85%; right: 20%; }
+
+        /* Click animation */
+        .click-animation {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            border: 3px solid #ffed4e;
+            border-radius: 50%;
+            animation: clickPulse 0.6s ease-out;
+            pointer-events: none;
+        }
+
+        @keyframes clickPulse {
+            0% { transform: scale(0); opacity: 1; }
+            100% { transform: scale(2); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="birthday-text">🎉 Happy Birthday 🎉</div>
+        <div class="name">Zandu ji</div>
+        <div class="message">
+            🎂 Janam Din ki hardik mubarake 😊 ✨
+        </div>
+    </div>
+
+    <!-- Balloons -->
+    <div class="balloon balloon1"></div>
+    <div class="balloon balloon2"></div>
+    <div class="balloon balloon3"></div>
+    <div class="balloon balloon4"></div>
+    <div class="balloon balloon5"></div>
+
+    <!-- Stars -->
+    <div class="star star1"></div>
+    <div class="star star2"></div>
+    <div class="star star3"></div>
+    <div class="star star4"></div>
+
+    <!-- Cake -->
+    <div class="cake">
+        <div class="cake-base">
+            <div class="cake-layer"></div>
+            <div class="candle">
+                <div class="flame"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Create falling confetti
+        function createConfetti() {
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + '%';
+                confetti.style.animationDelay = Math.random() * 3 + 's';
+                confetti.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                document.body.appendChild(confetti);
+            }
+        }
+
+        // Click animation effect
+        document.addEventListener('click', function(e) {
+            const clickAnimation = document.createElement('div');
+            clickAnimation.className = 'click-animation';
+            clickAnimation.style.left = (e.clientX - 25) + 'px';
+            clickAnimation.style.top = (e.clientY - 25) + 'px';
+            document.body.appendChild(clickAnimation);
+            
+            setTimeout(() => {
+                clickAnimation.remove();
+            }, 600);
+        });
+
+        // Create confetti on load
+        createConfetti();
+
+        // Recreate confetti every 10 seconds
+        setInterval(createConfetti, 10000);
+
+        // Birthday song notes (simplified Happy Birthday melody)
+        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        
+        function playNote(frequency, duration) {
+            const oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+            
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+            
+            oscillator.frequency.setValueAtTime(frequency, audioContext.currentTime);
+            oscillator.type = 'sine';
+            
+            gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + duration);
+            
+            oscillator.start(audioContext.currentTime);
+            oscillator.stop(audioContext.currentTime + duration);
+        }
+
+        // Play a simple birthday tune on click
+        let noteIndex = 0;
+        const birthdayNotes = [264, 264, 297, 264, 352, 330, 264, 264, 297, 264, 396, 352];
+        
+        document.addEventListener('click', function() {
+            if (noteIndex < birthdayNotes.length) {
+                playNote(birthdayNotes[noteIndex], 0.5);
+                noteIndex++;
+                if (noteIndex >= birthdayNotes.length) noteIndex = 0;
+            }
+        });
+    </script>
+</body>
+</html>
